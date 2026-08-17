@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Stable LineageOS 23.2 base for Xiaomi Mi 10T / Mi 10T Pro. -->
+  <!-- Lineage's official build target uses the unified codename "apollon". -->
+  <remote name="lineage-apollon"
+          fetch="https://github.com/LineageOS"
+          revision="refs/heads/lineage-23.2" />
+  <remote name="muppets-apollon"
+          fetch="https://github.com/TheMuppets"
+          revision="refs/heads/lineage-23.2" />
+
+  <project name="android_device_xiaomi_apollon"
+           path="device/xiaomi/apollon"
+           remote="lineage-apollon"
+           revision="4b9526dbd4c8369fb9362708faae2b63ca905f22"
+           clone-depth="1" />
+  <project name="android_device_xiaomi_sm8250-common"
+           path="device/xiaomi/sm8250-common"
+           remote="lineage-apollon"
+           revision="da4ba935256abcc07973fb17d6b7729058fc9f9b"
+           clone-depth="1" />
+  <project name="android_kernel_xiaomi_sm8250"
+           path="kernel/xiaomi/sm8250"
+           remote="lineage-apollon"
+           revision="71b13e62f057a649b77fe4062feb73ee72ad609c"
+           clone-depth="1" />
+  <project name="android_hardware_xiaomi"
+           path="hardware/xiaomi"
+           remote="lineage-apollon"
+           revision="892a1cded9c7bf89adf4700af5dfca099ec54782"
+           clone-depth="1" />
+  <project name="proprietary_vendor_xiaomi_apollon"
+           path="vendor/xiaomi/apollon"
+           remote="muppets-apollon"
+           revision="0f1038ffa11d56c84e65477742df35473e191432"
+           clone-depth="1" />
+  <project name="proprietary_vendor_xiaomi_sm8250-common"
+           path="vendor/xiaomi/sm8250-common"
+           remote="muppets-apollon"
+           revision="b4a9f9ab59190887fee4d882ff10a1a3cc7e7712"
+           clone-depth="1" />
+</manifest>

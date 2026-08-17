@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- AviumUI's official Pixel GMS source bundle for Android 16 QPR2. -->
+  <remote name="gitlab"
+          fetch="https://gitlab.com/"
+          revision="refs/heads/sixteen-qpr2" />
+
+  <project name="proprietary_vendor_pixel_clocks"
+           path="vendor/pixel/clocks"
+           remote="avium"
+           revision="e3beb954fd54d82798f34002425ff58f9a115714"
+           clone-depth="1" />
+  <project name="PixelOS-AOSP/proprietary_vendor_pixel_sounds"
+           path="vendor/pixel/sounds"
+           remote="gitlab"
+           revision="3fa4964358186344d12259db6809081def36469f"
+           clone-depth="1" />
+  <project name="proprietary_vendor_pixel_gms"
+           path="vendor/pixel/gms"
+           remote="avium"
+           revision="729ad4d0e9a3c0fe2f7e548fce00bda76190b0fd"
+           clone-depth="1" />
+</manifest>

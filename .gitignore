@@ -1,0 +1,6 @@
+# Keep build outputs and proprietary payloads out of the public source overlay.
+out/
+*.apk
+*.apk.gz
+*.img
+*.zip

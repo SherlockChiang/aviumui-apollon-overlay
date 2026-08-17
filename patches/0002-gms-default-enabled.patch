@@ -1,0 +1,38 @@
+diff --git a/services/core/java/ink/kaleidoscope/server/GmsManagerService.java b/services/core/java/ink/kaleidoscope/server/GmsManagerService.java
+index 10ec53db9..c925b86cd 100644
+--- a/services/core/java/ink/kaleidoscope/server/GmsManagerService.java
++++ b/services/core/java/ink/kaleidoscope/server/GmsManagerService.java
+@@ -36,6 +36,7 @@ import android.os.Handler;
+ import android.os.IUserManager;
+ import android.os.RemoteException;
+ import android.os.ServiceManager;
++import android.os.SystemProperties;
+ import android.provider.Settings;
+ 
+ import com.android.server.ServiceThread;
+@@ -64,6 +65,7 @@ public final class GmsManagerService extends SystemService {
+     };
+ 
+     private static final String TAG = "GmsManagerService";
++    private static final String GMS_INCLUDED_PROP = "ro.avium.gms_status";
+ 
+     private static HashMap<Integer, Boolean> sCachedSettings = new HashMap<>();
+ 
+@@ -126,6 +128,15 @@ public final class GmsManagerService extends SystemService {
+     }
+ 
+     private void updateStateForUser(int userId) {
+-        boolean enabled = Settings.Secure.getIntForUser(mResolver, GMS_ENABLED, 0, userId) == 1;
++        final int defaultValue =
++                SystemProperties.getBoolean(GMS_INCLUDED_PROP, false) ? 1 : 0;
++        if (Settings.Secure.getStringForUser(mResolver, GMS_ENABLED, userId) == null) {
++            // GMS builds should work immediately after a clean installation.
++            // Persist the initial value so FeatureSettings shows the same state,
++            // while preserving an existing user's explicit on/off choice.
++            Settings.Secure.putIntForUser(mResolver, GMS_ENABLED, defaultValue, userId);
++        }
++        boolean enabled = Settings.Secure.getIntForUser(
++                mResolver, GMS_ENABLED, defaultValue, userId) == 1;
+         sCachedSettings.put(userId, enabled);
+ 
+         try {
